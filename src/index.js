@@ -5,10 +5,24 @@ const { default: mongoose } = require('mongoose');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// appcd.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+app.use(function (req, res, next){
+    console.log('Request URL:', req.originalUrl)
+   
+
+
+   console.log('Request Type:', req.method) // use to check method
+ const date = new Date().toLocaleString()
+    console.log(date,req.ip,req.url)
+    next()
+})
+
+
+
+
+mongoose.connect("mongodb+srv://taabish:lkmgsyjhwbQYgkvX@cluster0.cp3ka.mongodb.net/sonu639?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
